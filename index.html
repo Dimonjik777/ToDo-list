@@ -4,24 +4,36 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>ToDo list</title>
   </head>
   <body>
 
     <div class="todo">
       <div class="todo__inputs">
-        <input type="text" placeholder="Enter task">
-        <input type="text"></div>
+        <input class="task__input" type="text" placeholder="Enter task">
+        <button class="task__add">Save</button>
+      </div>
       <div class="todo__tasks">
-        <div class="task">
-          <p class="task__title"></p>
-          <button></button><button></button></div>
-        <div class="task">
-          <p class="task__title"></p>
-          <button></button><button></button></div>
-        <div class="task">
-          <p class="task__title"></p>
-          <button></button><button></button></div>
+        <div class="todo__container">
+          <div class="task">
+            <p class="task__title">Task 1</p>
+            <button class="task__check"></button>
+            <button class="task__delete">X</button>
+          </div>
+          <div class="task">
+            <p class="task__title task__complete">Task 1</p>
+            <button class="task__check task__complete"></button>
+            <button class="task__delete">X</button>
+          </div>
+
+          <div class="task">
+            <p class="task__title">Task 1</p>
+            <button class="task__check"></button>
+            <button class="task__delete">X</button>
+          </div>
+          
+        </div>
+        
       </div>
     </div>
     <div id="root"></div>
