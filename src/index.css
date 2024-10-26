@@ -76,6 +76,10 @@ p{
   margin-bottom: 0;
 }
 
+.task__title{
+  transition: .3s ease all;
+}
+
 .task button{
   height: 50px;
   width: 50px;
@@ -83,6 +87,11 @@ p{
   border-radius: 10px;
 }
 
+.tasks__empty{
+  font-size: 48px;
+  font-weight: bold;
+  color: gray;
+}
 
 .task__check{
   margin-left: auto;
@@ -96,13 +105,14 @@ p{
   border: 3px solid #609637;
 }
 
-p.task__complete{
+.task__complete{
   color: #609637;
 }
 
-button.task__complete{
+.task__complete .task__check{
   background: url("img/check-mark.png") no-repeat center;
   border: 3px solid #609637;
+  background-color: #D5FFB5;
 }
 
 .task__delete{
