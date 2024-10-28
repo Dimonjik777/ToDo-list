@@ -18,14 +18,20 @@ p{
 }
 
 
-.todo{
-  width: 600px;
-  margin: 0 auto; 
+.app{
+  margin-left: 25%;
   margin-top: 50px;
 }
 
+.todo{
+  display: flex;
+  align-items: center;
+}
+
 .todo__inputs{
-  margin-bottom: 70px;
+  margin-bottom: 50px;
+  display: flex;
+  width: 600px;
 }
 
 .task__input{
@@ -34,7 +40,7 @@ p{
   padding: 15px;
   width: 400px;
   border-radius: 10px;
-  margin-right: 50px;
+  margin-right: auto;
 }
 
 .task__add{
@@ -47,6 +53,7 @@ p{
   padding: 15px;
   cursor: pointer;
   transition: .3s ease all;
+  
 }
 
 .task__add:hover{
@@ -60,6 +67,7 @@ p{
   font-size: 36px;
   border-radius: 10px;
   overflow-y: auto;
+  width: 600px;
 }
 
 .todo__container{
@@ -126,4 +134,30 @@ p{
 
 .task__delete:hover{
   background-color: #FF8C8C;
+}
+
+.show__tasks{
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.show__tasks button{
+  opacity: .75;
+  border: none;
+  border-radius: 10px;
+  font-size: 24px;
+  padding: 15px 10px;
+  width: 150px;
+  cursor: pointer;
+  transition: .3s ease all;
+  margin-bottom: 15px;
+}
+
+.show__tasks button:hover{
+  opacity: 1;
+}
+
+.show__tasks button.active{
+  opacity: 1;
 }

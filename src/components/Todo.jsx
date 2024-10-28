@@ -1,26 +1,35 @@
 import React, { useState, useEffect } from 'react'
 import Task from './Task';
 import Inputs from './Inputs';
+import ShowTasks from './ShowTasks';
 
 const Todo = () => {
 
   // List with tasks
   const [todo, setTodo] = useState(JSON.parse(localStorage.getItem("todo")) || []);
+  
+  // Display all tasks or category
+  const [showTasks, setShowTasks] = useState("All tasks");
+
+  function handleChangeShowTasks(event){
+    setShowTasks(event.target.value);
+  }
 
   // Parent function for create task
   function addTask(task) {
-    setTodo([...todo, { title: task, isComplete: false }]);
+    setTodo([...todo, { id:Date.now() ,title: task, isComplete: false }]);
   }
 
   function checkTask(id) {
-    const newTodo = todo.map((task, index) =>
-      id == index ? { ...task, isComplete: !task.isComplete } : task
+    const newTodo = todo.map(task =>
+      task.id == id ? { ...task, isComplete: !task.isComplete } : task
     );
     setTodo(newTodo);
+    setShowTasks(showTasks)
   }
 
   function deleteTask(id) {
-    let newTodo = todo.filter((_, index) => id != index);
+    let newTodo = todo.filter((task, index) => task.id != id);
     setTodo(newTodo);
   }
 
@@ -28,29 +37,41 @@ const Todo = () => {
 
   useEffect(() => {
     localStorage.setItem("todo", JSON.stringify(todo));
-    console.log(todo);
   }, [todo]);
 
-  return (
-    <div className="todo">
-      <Inputs onAddTask={addTask} />
-      <div className="todo__tasks">
-        <div className="todo__container">
+  const filteredTasks = showTasks == "All tasks" ? todo
+  : showTasks == "Complete" ? todo.filter(task => task.isComplete)
+  : todo.filter(task => !task.isComplete);
+  
+  const noHaveTasks = todo.length == 0 ? "Write a new task"
+  : showTasks == "Complete" ? "No task completed"
+  : "All tasks are completed";
 
-          {/* Render tasks */}
-          {todo.length != 0 ? (todo.map((task, index) => (
-            <Task
-              key={index}
-              title={task.title}
-              isComplete={task.isComplete}
-              changeCheckTask={() => checkTask(index)}
-              onDeleteTask={() => deleteTask(index)} />
-          )))
-            : (<div className='tasks__empty'>Write a new task</div>)
-          }
+  console.log(todo);
+  return (
+    <div className="app">
+      <Inputs onAddTask={addTask} />
+      <div className="todo">
+        <div className="todo__tasks">
+          <div className="todo__container">
+
+            {/* Render tasks */}
+            {filteredTasks.length != 0 ? (filteredTasks.map(task => (
+              
+              <Task
+                key={task.id}
+                title={task.title}
+                isComplete={task.isComplete}
+                changeCheckTask={() => checkTask(task.id)}
+                onDeleteTask={() => deleteTask(task.id)} />
+            )))
+              : (<div className='tasks__empty'>{noHaveTasks}</div>)
+            }
+
+          </div>
 
         </div>
-
+            <ShowTasks activeShowTasks={showTasks} handleClickShow={handleChangeShowTasks} />
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
-const Inputs = ({onAddTask}) => {
+const Inputs = ({ onAddTask }) => {
 
   // Task in form
   const [task, setTask] = useState("");
@@ -10,23 +10,25 @@ const Inputs = ({onAddTask}) => {
   }
 
   // Add new task in state parent and clean form
-  function handleSubmit(event){
+  function handleSubmit(event) {
     event.preventDefault();
     onAddTask(task);
     setTask("");
   }
 
   return (
-    <div className="todo__inputs">
-      <input
-      className="task__input"
-      type="text"
-      placeholder="Enter task"
-      value={task}
-      onChange={handleChange}
-      />
-      <button onClick={handleSubmit} className="task__add">Save</button>
-    </div>
+    <>
+      <div className="todo__inputs">
+        <input
+          className="task__input"
+          type="text"
+          placeholder="Enter task"
+          value={task}
+          onChange={handleChange}
+        />
+        <button onClick={handleSubmit} className="task__add">Save</button>
+      </div>
+    </>
   )
 }
 
